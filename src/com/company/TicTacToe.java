@@ -5,12 +5,12 @@ import java.util.*;
 
 public class TicTacToe {
     // Globale Variablen
-    int turn;
+    private int turn;
     Scanner sc  = new Scanner(System.in);
-    char[][] field;
-    boolean won;
-    String winner;
-    char player1, computer;
+    private char[][] field;
+    private boolean won;
+    private String winner;
+    private char player1, computer;
 
 
 
@@ -21,7 +21,22 @@ public class TicTacToe {
         this.winner = "";
     }
 
-
+    // Getter
+    protected int getTurn(){
+        return this.turn;
+    }
+    protected char getPlayer1(){
+        return this.player1;
+    }
+    protected char getComputer(){
+        return this.computer;
+    }
+    protected boolean getWon(){
+        return this.won;
+    }
+    protected String getWinner(){
+        return this.winner;
+    }
 
     // Methoden für Spielfeld
 
@@ -131,6 +146,7 @@ public class TicTacToe {
                 field[i][j] = '-';
             }
     }
+
 
     // Methoden für Spiellogik
 
