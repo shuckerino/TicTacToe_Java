@@ -3,16 +3,20 @@ package com.company;
 import java.util.*;
 
 public class Main {
-    private static TicTacToe game = new TicTacToe();
     //Main
+    //TODO implement random turns (random who actually starts)
     public static void main(String[] args) {
+        TicTacToe game = new TicTacToe();
+        GUI gui = new GUI(game.getPlayerTurn(), game.getPlayer1(), game.getComputer());
         game.chooseTeam();
         game.initField();
 
         // Loop, bis gewonnen oder unentschieden
         while(!game.checkHorizontal() && !game.checkVertical() && !game.checkCross() && !game.checkTie()){
+            // Spieler ändern
+            game.nextTurn();
             // Zug machen
-            if(game.getTurn()%2 == 0){
+            if(game.getPlayerTurn()){
                 game.showField();
                 System.out.println("Du bist am Zug!");
                 game.setField(game.getPlayer1());

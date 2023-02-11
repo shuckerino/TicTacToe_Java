@@ -1,5 +1,8 @@
 package com.company;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 
@@ -11,6 +14,8 @@ public class TicTacToe {
     private boolean won;
     private String winner;
     private char player1, computer;
+    private boolean player_turn;
+    Random random = new Random();
 
 
 
@@ -19,6 +24,7 @@ public class TicTacToe {
         this.field = new char[3][3];
         this.won = false;
         this.winner = "";
+        firstTurn();
     }
 
     // Getter
@@ -36,6 +42,9 @@ public class TicTacToe {
     }
     protected String getWinner(){
         return this.winner;
+    }
+    protected boolean getPlayerTurn(){
+        return player_turn;
     }
 
     // Methoden für Spielfeld
@@ -94,14 +103,14 @@ public class TicTacToe {
                 }
                 else{
                     invalid = true;
-                    if(turn%2 == 0)
+                    if(player_turn)
                         System.out.println("Feld besetzt!");
                 }
 
             }
             else{
                 invalid = true;
-                if(turn%2 == 0)
+                if(player_turn)
                     System.out.println("Ungültiges Feld");
 
             }
@@ -146,6 +155,22 @@ public class TicTacToe {
                 field[i][j] = '-';
             }
     }
+
+    public void firstTurn(){
+        if(random.nextInt(2) == 0)
+            player_turn = true;
+        else
+            player_turn = false;
+    }
+
+    public void nextTurn(){
+        if(player_turn)
+            player_turn = false;
+        else
+            player_turn = true;
+    }
+
+
 
 
     // Methoden für Spiellogik
